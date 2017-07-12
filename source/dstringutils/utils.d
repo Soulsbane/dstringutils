@@ -4,6 +4,11 @@ import std.regex;
 import std.conv;
 import std.string;
 
+version(unittest)
+{
+	import fluent.asserts;
+}
+
 /**
 	Formats a number using commas. Example 1000 => 1,000.
 
@@ -22,9 +27,9 @@ string formatNumber(const string number)
 ///
 unittest
 {
-	assert(formatNumber("100") == "100");
-	assert(formatNumber("1000") == "1,000");
-	assert(formatNumber("1000000") == "1,000,000");
+	formatNumber("100").should.equal("100");
+	formatNumber("1000").should.equal("1,000");
+	formatNumber("1000000").should.equal("1,000,000");
 }
 
 /**
@@ -44,9 +49,9 @@ string formatNumber(const size_t number)
 ///
 unittest
 {
-	assert(formatNumber(100) == "100");
-	assert(formatNumber(1000) == "1,000");
-	assert(formatNumber(1000000) == "1,000,000");
+	formatNumber(100).should.equal("100");
+	formatNumber(1000).should.equal("1,000");
+	formatNumber(1_000_000).should.equal("1,000,000");
 }
 
 /**
@@ -66,13 +71,8 @@ bool hasOnlySpaces(const string text)
 ///
 unittest
 {
-	immutable string spaces = "   ";
-	immutable string spaces1 = "1   ";
-	immutable string spacesx = "x   ";
-	immutable string mixed = " xall   s";
-
-	assert(spaces.hasOnlySpaces);
-	assert(!spaces1.hasOnlySpaces);
-	assert(!spacesx.hasOnlySpaces);
-	assert(!mixed.hasOnlySpaces);
+	"   ".hasOnlySpaces.should.equal(true);
+	"1   ".hasOnlySpaces.should.equal(false);
+	"x   ".hasOnlySpaces.should.equal(false);
+	" xall   s".hasOnlySpaces.should.equal(false);
 }
