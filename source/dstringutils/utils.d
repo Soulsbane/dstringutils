@@ -1,8 +1,10 @@
 module dstringutils.utils;
 
+import std.algorithm;
 import std.regex;
 import std.conv;
 import std.string;
+import std.array;
 
 version(unittest)
 {
@@ -77,4 +79,27 @@ unittest
 	"1   ".hasOnlySpaces.should.equal(false);
 	"x   ".hasOnlySpaces.should.equal(false);
 	" xall   s".hasOnlySpaces.should.equal(false);
+}
+
+size_t countChars(T)(const T value) pure @safe
+{
+	return count(value);
+}
+
+///
+unittest
+{
+	"hello".countChars.should.equal(5);
+}
+
+T removeChars(T, S)(const T value, const S charToRemove)
+{
+	return value.replace(charToRemove, "");
+}
+
+unittest
+{
+    removeChars("hello world", "l").should.equal("heo word");
+    removeChars("hello world", "d").should.equal("hello worl");
+    removeChars("hah", "h").should.equal("a");
 }
