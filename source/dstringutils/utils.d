@@ -30,6 +30,7 @@ unittest
 	formatNumber("100").should.equal("100");
 	formatNumber("1000").should.equal("1,000");
 	formatNumber("1000000").should.equal("1,000,000");
+	formatNumber("-1000000").should.equal("-1,000,000");
 }
 
 /**
@@ -41,7 +42,7 @@ unittest
 	Returns:
 		The formatted number;
 */
-string formatNumber(const size_t number)
+string formatNumber(T)(const T number)
 {
 	return number.to!string.formatNumber;
 }
@@ -52,6 +53,7 @@ unittest
 	formatNumber(100).should.equal("100");
 	formatNumber(1000).should.equal("1,000");
 	formatNumber(1_000_000).should.equal("1,000,000");
+	formatNumber(-1_000_000).should.equal("-1,000,000");
 }
 
 /**
