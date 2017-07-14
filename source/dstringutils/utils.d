@@ -103,3 +103,74 @@ unittest
     removeChars("hello world", "d").should.equal("hello worl");
     removeChars("hah", "h").should.equal("a");
 }
+
+/**
+	Removes the charactor from the beginning of a string.
+
+	Params:
+		str = The string to remove characters from.
+		charToRemove = The character to remove.
+
+	Returns:
+		The modified string with all characters to be removed are removed.
+*/
+string removeLeadingChars(T)(string str, const T charToRemove) pure @safe
+{
+	while(!str.empty)
+	{
+		immutable auto c = str.front;
+
+		if(c != charToRemove)
+		{
+			break;
+		}
+
+		str.popFront();
+	}
+
+
+	return str;
+}
+
+///
+unittest
+{
+	"--help".removeLeadingChars('-').should.equal("help");
+	"help-me".removeLeadingChars('-').should.equal("help-me");
+	"--help-me".removeLeadingChars('-').should.equal("help-me");
+}
+
+/**
+	Modifies the passed string by removing the character specified.
+
+	Params:
+		str = The string to remove characters from.
+		charToRemove = The character to remove.
+*/
+void removeLeadingCharsEmplace(T)(ref string str, const T charToRemove) pure @safe
+{
+	while(!str.empty)
+	{
+		immutable auto c = str.front;
+
+		if(c != charToRemove)
+		{
+			break;
+		}
+
+		str.popFront();
+	}
+}
+
+///
+unittest
+{
+	string value = "--help";
+	string anotherValue = "--help-me";
+
+	value.removeLeadingCharsEmplace('-');
+	anotherValue.removeLeadingCharsEmplace('-');
+
+	value.should.equal("help");
+	anotherValue.should.equal("help-me");
+}
