@@ -210,7 +210,7 @@ unittest
 bool isVowelChar(T)(const T vowelChar) pure @safe
 	if(isSomeChar!T)
 {
-	immutable string vowels = "aeiou";
+	immutable string vowels = "aeiouAEIOU";
 	return vowels.canFind!(a => a == vowelChar);
 }
 
@@ -224,6 +224,14 @@ unittest
 	'u'.isVowelChar.should.equal(true);
 	'b'.isVowelChar.should.equal(false);
 	'z'.isVowelChar.should.equal(false);
+
+	'A'.isVowelChar.should.equal(true);
+	'E'.isVowelChar.should.equal(true);
+	'I'.isVowelChar.should.equal(true);
+	'O'.isVowelChar.should.equal(true);
+	'U'.isVowelChar.should.equal(true);
+	'B'.isVowelChar.should.equal(false);
+	'Z'.isVowelChar.should.equal(false);
 }
 
 /**
@@ -256,4 +264,12 @@ unittest
 	"u".isVowelChar.should.equal(true);
 	"b".isVowelChar.should.equal(false);
 	"z".isVowelChar.should.equal(false);
+
+	"A".isVowelChar.should.equal(true);
+	"E".isVowelChar.should.equal(true);
+	"I".isVowelChar.should.equal(true);
+	"O".isVowelChar.should.equal(true);
+	"U".isVowelChar.should.equal(true);
+	"B".isVowelChar.should.equal(false);
+	"Z".isVowelChar.should.equal(false);
 }
