@@ -127,6 +127,26 @@ unittest
     removeChars("hah", "h").should.equal("a");
 }
 
+void removeCharsEmplace(T, S)(ref T value, const S charToRemove)
+{
+	value = value.replace(charToRemove, "");
+}
+
+unittest
+{
+	string hellol = "hello world";
+	string hellod = "hello world";
+	string hah = "hah";
+
+	hellol.removeCharsEmplace("l");
+	hellod.removeCharsEmplace("d");
+	hah.removeCharsEmplace("h");
+
+	hellol.should.equal("heo word");
+	hellod.should.equal("hello worl");
+	hah.should.equal("a");
+}
+
 /**
 	Removes the charactor from the beginning of a string.
 
