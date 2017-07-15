@@ -272,4 +272,7 @@ unittest
 	"U".isVowelChar.should.equal(true);
 	"B".isVowelChar.should.equal(false);
 	"Z".isVowelChar.should.equal(false);
+
+	"Hello".isVowelChar.should.equal(false);
+	"".isVowelChar.should.equal(false);
 }
