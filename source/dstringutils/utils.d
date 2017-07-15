@@ -5,6 +5,7 @@ import std.regex;
 import std.conv;
 import std.string;
 import std.array;
+import std.traits;
 
 version(unittest)
 {
@@ -173,4 +174,33 @@ unittest
 
 	value.should.equal("help");
 	anotherValue.should.equal("help-me");
+}
+
+/**
+	Determines is a character is a vowel
+
+	Params:
+		vowelChar = The character to check.
+
+	Returns:
+		true if the character is a vowel false otherwise.
+*/
+bool isVowelChar(T)(const T vowelChar) pure @safe
+	if(isSomeChar!T)
+{
+	immutable string vowels = "aeiou";
+	return vowels.canFind!(a => a == vowelChar);
+}
+
+///
+unittest
+{
+	'a'.isVowelChar.should.equal(true);
+	'e'.isVowelChar.should.equal(true);
+	'i'.isVowelChar.should.equal(true);
+	'o'.isVowelChar.should.equal(true);
+	'u'.isVowelChar.should.equal(true);
+	'b'.isVowelChar.should.equal(false);
+	'z'.isVowelChar.should.equal(false);
+	"z".isVowelChar.should.equal(false);
 }
