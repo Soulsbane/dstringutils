@@ -224,5 +224,36 @@ unittest
 	'u'.isVowelChar.should.equal(true);
 	'b'.isVowelChar.should.equal(false);
 	'z'.isVowelChar.should.equal(false);
+}
+
+/**
+	Determines is a character is a vowel
+
+	Params:
+		value = The character to check.
+
+	Returns:
+		true if the character is a vowel false otherwise. This function will also return false if
+		the string length is 0 or greater than 1.
+*/
+bool isVowelChar(T)(const T value) pure @safe
+	if(isSomeString!T)
+{
+	if(value.length == 1)
+	{
+		return isVowelChar(value[0]);
+	}
+
+	return false;
+}
+
+unittest
+{
+	"a".isVowelChar.should.equal(true);
+	"e".isVowelChar.should.equal(true);
+	"i".isVowelChar.should.equal(true);
+	"o".isVowelChar.should.equal(true);
+	"u".isVowelChar.should.equal(true);
+	"b".isVowelChar.should.equal(false);
 	"z".isVowelChar.should.equal(false);
 }
