@@ -82,6 +82,15 @@ unittest
 	" xall   s".hasOnlySpaces.should.equal(false);
 }
 
+/**
+	Counts the number of characters in a string.
+
+	Params:
+		value = The string to count.
+
+	Returns:
+		The number of characters in the string.
+*/
 size_t countChars(T)(const T value) pure @safe
 {
 	return count(value);
@@ -93,6 +102,16 @@ unittest
 	"hello".countChars.should.equal(5);
 }
 
+/**
+	Removes all specified characters from the string.
+
+	Params:
+		value = The string which characters will be removed.
+		charToRemove = The character to remove from value.
+
+	Returns:
+		The modified value that has the specified character removed.
+*/
 T removeChars(T, S)(const T value, const S charToRemove)
 {
 	return value.replace(charToRemove, "");
