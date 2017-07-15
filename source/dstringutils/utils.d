@@ -109,7 +109,7 @@ unittest
 	Removes all specified characters from the string.
 
 	Params:
-		value = The string which characters will be removed.
+		value = The string from which characters will be removed.
 		charToRemove = The character to remove from value.
 
 	Returns:
@@ -127,6 +127,13 @@ unittest
     removeChars("hah", "h").should.equal("a");
 }
 
+/**
+	Removes all specified characters from the string.
+
+	Params:
+		value = The string from which characters will be removed.
+		charToRemove = The character to remove from value.
+*/
 void removeCharsEmplace(T, S)(ref T value, const S charToRemove)
 {
 	value = value.replace(charToRemove, "");
