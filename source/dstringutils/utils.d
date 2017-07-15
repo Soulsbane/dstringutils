@@ -122,9 +122,9 @@ T removeChars(T, S)(const T value, const S charToRemove)
 
 unittest
 {
-    removeChars("hello world", "l").should.equal("heo word");
-    removeChars("hello world", "d").should.equal("hello worl");
-    removeChars("hah", "h").should.equal("a");
+	removeChars("hello world", "l").should.equal("heo word");
+	removeChars("hello world", "d").should.equal("hello worl");
+	removeChars("hah", "h").should.equal("a");
 }
 
 /**
