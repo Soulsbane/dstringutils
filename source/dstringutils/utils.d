@@ -1,3 +1,6 @@
+/**
+	Various string utility functions not found in Phobos.
+*/
 module dstringutils.utils;
 
 import std.algorithm;
