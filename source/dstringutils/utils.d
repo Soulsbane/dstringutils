@@ -355,6 +355,7 @@ string[] toStringAll(T)(T[] values)
 	return app.data;
 }
 
+///
 unittest
 {
 	equal(toStringAll([ 1, 2, 3, 4 ]), [ "1", "2", "3", "4" ]).should.equal(true);
