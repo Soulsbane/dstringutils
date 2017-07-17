@@ -303,3 +303,32 @@ unittest
 	"Hello".isVowelChar.should.equal(false);
 	"".isVowelChar.should.equal(false);
 }
+
+/**
+	Converts each argument to a string.
+
+	Params:
+		args = The arguments to convert.
+
+	Returns:
+		An string array containing the arguments converted to a string.
+*/
+string[] toStringAll(T...)(T args)
+{
+	string[] output;
+	auto app = appender(output);
+
+	foreach(arg; args)
+	{
+		app.put(to!string(arg));
+	}
+
+	return app.data;
+}
+
+///
+unittest
+{
+	equal(toStringAll(10, 15), ["10", "15"]).should.equal(true);
+	equal(toStringAll(4.1, true, "hah", 5000), ["4.1", "true", "hah", "5000"]).should.equal(true);
+}
