@@ -311,7 +311,7 @@ unittest
 		args = The arguments to convert.
 
 	Returns:
-		An string array containing the arguments converted to a string.
+		A string array containing the arguments converted to a string.
 */
 string[] toStringAll(T...)(T args)
 {
@@ -331,4 +331,31 @@ unittest
 {
 	equal(toStringAll(10, 15), ["10", "15"]).should.equal(true);
 	equal(toStringAll(4.1, true, "hah", 5000), ["4.1", "true", "hah", "5000"]).should.equal(true);
+}
+
+/**
+	Converts an array to a string array.
+
+	Params:
+		args = The array to convert.
+
+	Returns:
+		A string array containing the arguments converted to a string.
+*/
+string[] toStringAll(T)(T[] values)
+{
+	string[] output;
+	auto app = appender(output);
+
+	foreach(value; values)
+	{
+		app.put(to!string(value));
+	}
+
+	return app.data;
+}
+
+unittest
+{
+	equal(toStringAll([ 1, 2, 3, 4 ]), [ "1", "2", "3", "4" ]).should.equal(true);
 }
