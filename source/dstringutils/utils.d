@@ -337,7 +337,7 @@ unittest
 	Converts an array to a string array.
 
 	Params:
-		args = The array to convert.
+		values = The array to convert.
 
 	Returns:
 		A string array containing the arguments converted to a string.
