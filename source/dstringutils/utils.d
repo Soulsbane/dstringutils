@@ -103,6 +103,8 @@ size_t countChars(T)(const T value) pure @safe
 unittest
 {
 	"hello".countChars.should.equal(5);
+	"今日は".countChars.should.equal(3);
+	"Привет".countChars.should.equal(6);
 }
 
 /**
