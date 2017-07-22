@@ -73,7 +73,7 @@ unittest
 */
 bool hasOnlySpaces(const string text)
 {
-	return text.length == text.countchars(" ") ? true : false;
+	return text.length == text.countChars(" ") ? true : false;
 }
 
 ///
