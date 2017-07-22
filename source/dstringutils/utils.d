@@ -6,7 +6,6 @@ module dstringutils.utils;
 import std.algorithm;
 import std.regex;
 import std.conv;
-import std.string;
 import std.array;
 import std.traits;
 
