@@ -108,6 +108,30 @@ unittest
 }
 
 /**
+	Counts the number of characters in a string.
+
+	Params:
+		value = The string to count.
+		charToFind = The character to find in the string.
+
+	Returns:
+		The number of characters in the string.
+*/
+size_t countChars(T, S)(const T value, const S charToFind) pure @safe
+{
+	return count(value, charToFind);
+}
+
+///
+unittest
+{
+	";; this is a test;".countChars(";").should.equal(3);
+	";; this is a test;".countChars(" ").should.equal(4);
+	"今日は".countChars("は").should.equal(1);
+	"Привет".countChars("П").should.equal(1);
+}
+
+/**
 	Removes all specified characters from the string.
 
 	Params:
