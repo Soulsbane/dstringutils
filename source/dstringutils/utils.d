@@ -385,3 +385,25 @@ unittest
 {
 	equal(toStringAll([ 1, 2, 3, 4 ]), [ "1", "2", "3", "4" ]).should.equal(true);
 }
+
+/**
+	Determines where a string is made up of multiple words. Note that using _ between words also counts.
+
+	Params:
+		value = The string to check for multiple words.
+
+	Returns:
+		True if the string contains multiple words false otherwise.
+*/
+bool hasMultipleWords(T)(const T value) pure @safe
+	if(isSomeString!T)
+{
+	return value.canFind("_", " ") >= 1;
+}
+
+///
+unittest
+{
+	hasMultipleWords("hello world").should.equal(true);
+	hasMultipleWords("hello").should.equal(false);
+}
