@@ -23,7 +23,7 @@ version(unittest)
 	Returns:
 		The formatted number;
 */
-string formatNumber(const string number)
+string formatNumber(const string number) @safe
 {
 	auto re = regex(r"(?<=\d)(?=(\d\d\d)+\b)","g");
 	return number.replaceAll(re, ",");
@@ -47,7 +47,7 @@ unittest
 	Returns:
 		The formatted number;
 */
-string formatNumber(T)(const T number)
+string formatNumber(T)(const T number) @safe
 {
 	return number.to!string.formatNumber;
 }
@@ -70,7 +70,7 @@ unittest
 	Returns:
 		True of the string only contains whitespaces false otherwise.
 */
-bool hasOnlySpaces(const string text)
+bool hasOnlySpaces(const string text) pure @safe
 {
 	return text.length == text.countChars(" ") ? true : false;
 }
@@ -140,7 +140,7 @@ unittest
 	Returns:
 		The modified value that has the specified character removed.
 */
-T removeChars(T, S)(const T value, const S charToRemove)
+T removeChars(T, S)(const T value, const S charToRemove) pure @safe
 {
 	return value.replace(charToRemove, "");
 }
@@ -159,7 +159,7 @@ unittest
 		value = The string from which characters will be removed.
 		charToRemove = The character to remove from value.
 */
-void removeCharsEmplace(T, S)(ref T value, const S charToRemove)
+void removeCharsEmplace(T, S)(ref T value, const S charToRemove) pure @safe
 {
 	value = value.replace(charToRemove, "");
 }
@@ -338,7 +338,7 @@ unittest
 	Returns:
 		A string array containing the arguments converted to a string.
 */
-string[] toStringAll(T...)(T args)
+string[] toStringAll(T...)(T args) @safe
 {
 	string[] output;
 	auto app = appender(output);
@@ -367,7 +367,7 @@ unittest
 	Returns:
 		A string array containing the arguments converted to a string.
 */
-string[] toStringAll(T)(T[] values)
+string[] toStringAll(T)(T[] values) @safe
 {
 	string[] output;
 	auto app = appender(output);
