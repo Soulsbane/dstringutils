@@ -34,6 +34,7 @@ private string findVariables(const string value) pure nothrow @safe
 		if(value[position] == '$')
 		{
 			position++;
+
 			if(position < value.length)
 			{
 				if(isIdentifierStart(value[position]))
@@ -59,7 +60,7 @@ private string findVariables(const string value) pure nothrow @safe
 
 	if(variables.length > 0)
 	{
-		return variables[0..$-1];
+		return variables[0..$ - 1];
 	}
 
 	return variables;
@@ -67,8 +68,8 @@ private string findVariables(const string value) pure nothrow @safe
 
 template Format(string value)
 {
-	enum Format = `format(std.regex.replace("`~value~`", regex(matchVars, "g"), "%s"), `~
-						 findVariables(value) ~ ")";
+	enum Format = `format(std.regex.replace("` ~ value ~ `", regex(matchVars, "g"), "%s"), `~
+					findVariables(value) ~ ")";
 }
 
 string inContextFormat(string value, T)(T context) @safe
