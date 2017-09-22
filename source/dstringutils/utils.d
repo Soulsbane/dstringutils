@@ -407,3 +407,40 @@ unittest
 	hasMultipleWords("hello world").should.equal(true);
 	hasMultipleWords("hello").should.equal(false);
 }
+
+/**
+	Converts a boolean value to a Yes or No string.
+
+	Params:
+		value = The boolean value to convert.
+
+	Returns:
+		Either a Yes for a true value or No for a false value.
+*/
+string toYesNo(T)(const T value)
+{
+	import std.typecons : isIntegral, isBoolean;
+
+	static if(isIntegral!T)
+	{
+		return (value == 1) ? "Yes" : "No";
+	}
+	else static if(isBoolean!T)
+	{
+		return value ? "Yes" : "No";
+	}
+	else
+	{
+		return "No";
+	}
+}
+
+///
+unittest
+{
+	true.toYesNo.should.equal("Yes");
+	false.toYesNo.should.equal("No");
+	1.toYesNo.should.equal("Yes");
+	0.toYesNo.should.equal("No");
+	"hellow world".toYesNo.should.equal("No");
+}
