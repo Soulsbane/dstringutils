@@ -180,7 +180,7 @@ unittest
 }
 
 /**
-	Removes the charactor from the beginning of a string.
+	Removes the character from the beginning of a string.
 
 	Params:
 		str = The string to remove characters from.
