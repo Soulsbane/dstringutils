@@ -444,3 +444,27 @@ unittest
 	0.toYesNo.should.equal("No");
 	"hellow world".toYesNo.should.equal("No");
 }
+
+/**
+	Determines if a string is empty.
+
+	Params:
+		value = The value to test.
+
+	Returns:
+		True if the value is empty false otherwise.
+*/
+bool isEmpty(T)(T value)
+	if(isSomeString!T)
+{
+	return value.length == 0;
+}
+
+unittest
+{
+	string zeroLength;
+	string hasLength = "Hello World!";
+
+	zeroLength.isEmpty.should.equal(true);
+	hasLength.isEmpty.should.equal(false);
+}
