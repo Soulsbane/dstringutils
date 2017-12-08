@@ -468,3 +468,28 @@ unittest
 	zeroLength.isEmpty.should.equal(true);
 	hasLength.isEmpty.should.equal(false);
 }
+
+/**
+	Sorts the passed string. Only string type is supported.
+
+	Params:
+		value = The value to sort.
+
+	Returns:
+		The sorted value.
+*/
+T sortString(T)(T value)
+{
+	return sort(value.to!(dchar[])).to!T;
+}
+
+unittest
+{
+	string hello = "hello";
+	string japanese = "ういおえあ";
+	string sortMe = "sortMe".sortString;
+
+	sortString(hello).should.equal("ehllo");
+	sortString(japanese).should.equal("あいうえお");
+	sortMe.should.equal("Meorst");
+}
