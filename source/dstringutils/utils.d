@@ -140,9 +140,10 @@ unittest
 	Returns:
 		The modified value that has the specified character removed.
 */
-T removeChars(T, S)(const T value, const S charToRemove) pure @safe
+T removeChars(T, S)(const T value, const S charToRemove) @safe
 {
-	return value.replace(charToRemove, "");
+	auto re = regex("[" ~ charToRemove ~ "]", "g");
+	return value.replaceAll(re, "");
 }
 
 unittest
@@ -150,6 +151,8 @@ unittest
 	removeChars("hello world", "l").should.equal("heo word");
 	removeChars("hello world", "d").should.equal("hello worl");
 	removeChars("hah", "h").should.equal("a");
+	removeChars("hello world", "el").should.equal("ho word");
+	removeChars("is this really a sentence", "li").should.equal("s ths reay a sentence");
 }
 
 /**
@@ -159,9 +162,10 @@ unittest
 		value = The string from which characters will be removed.
 		charToRemove = The character to remove from value.
 */
-void removeCharsEmplace(T, S)(ref T value, const S charToRemove) pure @safe
+void removeCharsEmplace(T, S)(ref T value, const S charToRemove) @safe
 {
-	value = value.replace(charToRemove, "");
+	auto re = regex("[" ~ charToRemove ~ "]", "g");
+	value = value.replaceAll(re, "");
 }
 
 unittest
@@ -169,14 +173,20 @@ unittest
 	string hellol = "hello world";
 	string hellod = "hello world";
 	string hah = "hah";
+	string hello2 = "hello world";
+	string sentence = "is this really a sentence";
 
 	hellol.removeCharsEmplace("l");
 	hellod.removeCharsEmplace("d");
 	hah.removeCharsEmplace("h");
+	hello2.removeCharsEmplace("el");
+	sentence.removeCharsEmplace("li");
 
 	hellol.should.equal("heo word");
 	hellod.should.equal("hello worl");
 	hah.should.equal("a");
+	hello2.should.equal("ho word");
+	sentence.should.equal("s ths reay a sentence");
 }
 
 /**
