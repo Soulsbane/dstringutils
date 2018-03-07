@@ -2,11 +2,6 @@ module dstringutils.interpolate;
 
 import std.string, std.regex, std.stdio;
 
-version(unittest)
-{
-	import fluent.asserts;
-}
-
 /// Match a D identifier prefixed by a '$'
 private enum matchVars = `\$[_a-zA-Z][_a-zA-Z0-9]*`;
 
@@ -87,7 +82,7 @@ unittest
 	immutable double amount = 3.58;
 	immutable string expanded = mixin(Format!("$hello I was born on $date and have $$amount for cash."));
 
-	expanded.should.equal("Hello World! I was born on 5081934 and have $3.58 for cash.");
+	assert(expanded == "Hello World! I was born on 5081934 and have $3.58 for cash.");
 
 	struct TestContext
 	{
@@ -98,7 +93,7 @@ unittest
 	auto context = TestContext("cake", 3.50);
 	immutable string expandedContext = context.inContextFormat!("You only have $$amount dollars. My favorite food is $name.");
 
-	expandedContext.should.equal("You only have $3.5 dollars. My favorite food is cake.");
+	assert(expandedContext == "You only have $3.5 dollars. My favorite food is cake.");
 
 	struct MyTest
 	{
@@ -113,6 +108,6 @@ unittest
 	MyTest my;
 	immutable string say = my.SayIt();
 
-	say.should.equal("Well hellow there.");
+	assert(say == "Well hellow there.");
 }
 

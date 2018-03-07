@@ -9,11 +9,6 @@ import std.conv;
 import std.array;
 import std.traits;
 
-version(unittest)
-{
-	import fluent.asserts;
-}
-
 /**
 	Formats a number using commas. Example 1000 => 1,000.
 
@@ -32,10 +27,10 @@ string formatNumber(const string number) @safe
 ///
 unittest
 {
-	formatNumber("100").should.equal("100");
-	formatNumber("1000").should.equal("1,000");
-	formatNumber("1000000").should.equal("1,000,000");
-	formatNumber("-1000000").should.equal("-1,000,000");
+	assert(formatNumber("100") == "100");
+	assert(formatNumber("1000") == "1,000");
+	assert(formatNumber("1000000") == "1,000,000");
+	assert(formatNumber("-1000000") == "-1,000,000");
 }
 
 /**
@@ -55,10 +50,10 @@ string formatNumber(T)(const T number) @safe
 ///
 unittest
 {
-	formatNumber(100).should.equal("100");
-	formatNumber(1000).should.equal("1,000");
-	formatNumber(1_000_000).should.equal("1,000,000");
-	formatNumber(-1_000_000).should.equal("-1,000,000");
+	assert(formatNumber(100) == "100");
+	assert(formatNumber(1000) == "1,000");
+	assert(formatNumber(1_000_000) == "1,000,000");
+	assert(formatNumber(-1_000_000) == "-1,000,000");
 }
 
 /**
@@ -78,10 +73,10 @@ bool hasOnlySpaces(const string text) pure @safe
 ///
 unittest
 {
-	"   ".hasOnlySpaces.should.equal(true);
-	"1   ".hasOnlySpaces.should.equal(false);
-	"x   ".hasOnlySpaces.should.equal(false);
-	" xall   s".hasOnlySpaces.should.equal(false);
+	assert("   ".hasOnlySpaces == true);
+	assert("1   ".hasOnlySpaces == false);
+	assert("x   ".hasOnlySpaces == false);
+	assert(" xall   s".hasOnlySpaces == false);
 }
 
 /**
@@ -101,9 +96,9 @@ size_t countChars(T)(const T value) pure @safe
 ///
 unittest
 {
-	"hello".countChars.should.equal(5);
-	"今日は".countChars.should.equal(3);
-	"Привет".countChars.should.equal(6);
+	assert("hello".countChars == 5);
+	assert("今日は".countChars == 3);
+	assert("Привет".countChars == 6);
 }
 
 /**
@@ -124,10 +119,10 @@ size_t countChars(T, S)(const T value, const S charToFind) pure @safe
 ///
 unittest
 {
-	";; this is a test;".countChars(";").should.equal(3);
-	";; this is a test;".countChars(" ").should.equal(4);
-	"今日は".countChars("は").should.equal(1);
-	"Привет".countChars("П").should.equal(1);
+	assert(";; this is a test;".countChars(";") == 3);
+	assert(";; this is a test;".countChars(" ") == 4);
+	assert("今日は".countChars("は") == 1);
+	assert("Привет".countChars("П") == 1);
 }
 
 /**
@@ -148,11 +143,11 @@ T removeChars(T, S)(const T value, const S charToRemove) @safe
 
 unittest
 {
-	removeChars("hello world", "l").should.equal("heo word");
-	removeChars("hello world", "d").should.equal("hello worl");
-	removeChars("hah", "h").should.equal("a");
-	removeChars("hello world", "el").should.equal("ho word");
-	removeChars("is this really a sentence", "li").should.equal("s ths reay a sentence");
+	assert(removeChars("hello world", "l") == "heo word");
+	assert(removeChars("hello world", "d") == "hello worl");
+	assert(removeChars("hah", "h") == "a");
+	assert(removeChars("hello world", "el") == "ho word");
+	assert(removeChars("is this really a sentence", "li") == "s ths reay a sentence");
 }
 
 /**
@@ -182,11 +177,11 @@ unittest
 	hello2.removeCharsEmplace("el");
 	sentence.removeCharsEmplace("li");
 
-	hellol.should.equal("heo word");
-	hellod.should.equal("hello worl");
-	hah.should.equal("a");
-	hello2.should.equal("ho word");
-	sentence.should.equal("s ths reay a sentence");
+	assert(hellol == "heo word");
+	assert(hellod == "hello worl");
+	assert(hah == "a");
+	assert(hello2 == "ho word");
+	assert(sentence == "s ths reay a sentence");
 }
 
 /**
@@ -220,9 +215,9 @@ string removeLeadingChars(T)(string str, const T charToRemove) pure @safe
 ///
 unittest
 {
-	"--help".removeLeadingChars('-').should.equal("help");
-	"help-me".removeLeadingChars('-').should.equal("help-me");
-	"--help-me".removeLeadingChars('-').should.equal("help-me");
+	assert("--help".removeLeadingChars('-') == "help");
+	assert("help-me".removeLeadingChars('-') == "help-me");
+	assert("--help-me".removeLeadingChars('-') == "help-me");
 }
 
 /**
@@ -256,8 +251,8 @@ unittest
 	value.removeLeadingCharsEmplace('-');
 	anotherValue.removeLeadingCharsEmplace('-');
 
-	value.should.equal("help");
-	anotherValue.should.equal("help-me");
+	assert(value == "help");
+	assert(anotherValue == "help-me");
 }
 
 /**
@@ -279,21 +274,21 @@ bool isVowelChar(T)(const T vowelChar) pure @safe
 ///
 unittest
 {
-	'a'.isVowelChar.should.equal(true);
-	'e'.isVowelChar.should.equal(true);
-	'i'.isVowelChar.should.equal(true);
-	'o'.isVowelChar.should.equal(true);
-	'u'.isVowelChar.should.equal(true);
-	'b'.isVowelChar.should.equal(false);
-	'z'.isVowelChar.should.equal(false);
+	assert('a'.isVowelChar == true);
+	assert('e'.isVowelChar == true);
+	assert('i'.isVowelChar == true);
+	assert('o'.isVowelChar == true);
+	assert('u'.isVowelChar == true);
+	assert('b'.isVowelChar == false);
+	assert('z'.isVowelChar == false);
 
-	'A'.isVowelChar.should.equal(true);
-	'E'.isVowelChar.should.equal(true);
-	'I'.isVowelChar.should.equal(true);
-	'O'.isVowelChar.should.equal(true);
-	'U'.isVowelChar.should.equal(true);
-	'B'.isVowelChar.should.equal(false);
-	'Z'.isVowelChar.should.equal(false);
+	assert('A'.isVowelChar == true);
+	assert('E'.isVowelChar == true);
+	assert('I'.isVowelChar == true);
+	assert('O'.isVowelChar == true);
+	assert('U'.isVowelChar == true);
+	assert('B'.isVowelChar == false);
+	assert('Z'.isVowelChar == false);
 }
 
 /**
@@ -319,24 +314,24 @@ bool isVowelChar(T)(const T value) pure @safe
 
 unittest
 {
-	"a".isVowelChar.should.equal(true);
-	"e".isVowelChar.should.equal(true);
-	"i".isVowelChar.should.equal(true);
-	"o".isVowelChar.should.equal(true);
-	"u".isVowelChar.should.equal(true);
-	"b".isVowelChar.should.equal(false);
-	"z".isVowelChar.should.equal(false);
+	assert("a".isVowelChar == true);
+	assert("e".isVowelChar == true);
+	assert("i".isVowelChar == true);
+	assert("o".isVowelChar == true);
+	assert("u".isVowelChar == true);
+	assert("b".isVowelChar == false);
+	assert("z".isVowelChar == false);
 
-	"A".isVowelChar.should.equal(true);
-	"E".isVowelChar.should.equal(true);
-	"I".isVowelChar.should.equal(true);
-	"O".isVowelChar.should.equal(true);
-	"U".isVowelChar.should.equal(true);
-	"B".isVowelChar.should.equal(false);
-	"Z".isVowelChar.should.equal(false);
+	assert("A".isVowelChar == true);
+	assert("E".isVowelChar == true);
+	assert("I".isVowelChar == true);
+	assert("O".isVowelChar == true);
+	assert("U".isVowelChar == true);
+	assert("B".isVowelChar == false);
+	assert("Z".isVowelChar == false);
 
-	"Hello".isVowelChar.should.equal(false);
-	"".isVowelChar.should.equal(false);
+	assert("Hello".isVowelChar == false);
+	assert("".isVowelChar == false);
 }
 
 /**
@@ -364,8 +359,8 @@ string[] toStringAll(T...)(T args) @safe
 ///
 unittest
 {
-	equal(toStringAll(10, 15), ["10", "15"]).should.equal(true);
-	equal(toStringAll(4.1, true, "hah", 5000), ["4.1", "true", "hah", "5000"]).should.equal(true);
+	assert(equal(toStringAll(10, 15), ["10", "15"]) == true);
+	assert(equal(toStringAll(4.1, true, "hah", 5000), ["4.1", "true", "hah", "5000"]) == true);
 }
 
 /**
@@ -393,7 +388,7 @@ string[] toStringAll(T)(T[] values) @safe
 ///
 unittest
 {
-	equal(toStringAll([ 1, 2, 3, 4 ]), [ "1", "2", "3", "4" ]).should.equal(true);
+	assert(equal(toStringAll([ 1, 2, 3, 4 ]), [ "1", "2", "3", "4" ]) == true);
 }
 
 /**
@@ -414,8 +409,8 @@ bool hasMultipleWords(T)(const T value) pure @safe
 ///
 unittest
 {
-	hasMultipleWords("hello world").should.equal(true);
-	hasMultipleWords("hello").should.equal(false);
+	assert(hasMultipleWords("hello world") == true);
+	assert(hasMultipleWords("hello") == false);
 }
 
 /**
@@ -448,11 +443,11 @@ string toYesNo(T)(const T value)
 ///
 unittest
 {
-	true.toYesNo.should.equal("Yes");
-	false.toYesNo.should.equal("No");
-	1.toYesNo.should.equal("Yes");
-	0.toYesNo.should.equal("No");
-	"hellow world".toYesNo.should.equal("No");
+	assert(true.toYesNo == "Yes");
+	assert(false.toYesNo == "No");
+	assert(1.toYesNo == "Yes");
+	assert(0.toYesNo == "No");
+	assert("hellow world".toYesNo == "No");
 }
 
 /**
@@ -475,8 +470,8 @@ unittest
 	string zeroLength;
 	string hasLength = "Hello World!";
 
-	zeroLength.isEmpty.should.equal(true);
-	hasLength.isEmpty.should.equal(false);
+	assert(zeroLength.isEmpty == true);
+	assert(hasLength.isEmpty == false);
 }
 
 /**
@@ -499,7 +494,7 @@ unittest
 	string japanese = "ういおえあ";
 	string sortMe = "sortMe".sortString;
 
-	sortString(hello).should.equal("ehllo");
-	sortString(japanese).should.equal("あいうえお");
-	sortMe.should.equal("Meorst");
+	assert(sortString(hello) == "ehllo");
+	assert(sortString(japanese) == "あいうえお");
+	assert(sortMe == "Meorst");
 }
