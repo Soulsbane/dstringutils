@@ -424,8 +424,6 @@ unittest
 */
 string toYesNo(T)(const T value)
 {
-	import std.typecons : isIntegral, isBoolean;
-
 	static if(isIntegral!T)
 	{
 		return (value == 1) ? "Yes" : "No";
