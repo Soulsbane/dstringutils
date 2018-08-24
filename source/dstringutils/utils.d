@@ -141,6 +141,7 @@ T removeChars(T, S)(const T value, const S charToRemove) @safe
 	return value.replaceAll(re, "");
 }
 
+///
 unittest
 {
 	assert(removeChars("hello world", "l") == "heo word");
@@ -163,6 +164,7 @@ void removeCharsEmplace(T, S)(ref T value, const S charToRemove) @safe
 	value = value.replaceAll(re, "");
 }
 
+///
 unittest
 {
 	string hellol = "hello world";
@@ -312,6 +314,7 @@ bool isVowelChar(T)(const T value) pure @safe
 	return false;
 }
 
+///
 unittest
 {
 	assert("a".isVowelChar == true);
@@ -463,6 +466,7 @@ bool isEmpty(T)(T value)
 	return value.length == 0;
 }
 
+///
 unittest
 {
 	string zeroLength;
@@ -486,6 +490,7 @@ T sortString(T)(T value)
 	return sort(value.to!(dchar[])).to!T;
 }
 
+///
 unittest
 {
 	string hello = "hello";
