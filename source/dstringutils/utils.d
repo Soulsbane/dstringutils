@@ -25,6 +25,7 @@ string formatNumber(const string number) @safe
 }
 
 ///
+@("formatNumber(string)")
 unittest
 {
 	assert(formatNumber("100") == "100");
@@ -48,6 +49,7 @@ string formatNumber(T)(const T number) @safe
 }
 
 ///
+@("formatNumber(T)")
 unittest
 {
 	assert(formatNumber(100) == "100");
@@ -71,6 +73,7 @@ bool hasOnlySpaces(const string text) pure @safe
 }
 
 ///
+@("hasOnlySpaces")
 unittest
 {
 	assert("   ".hasOnlySpaces == true);
@@ -94,6 +97,7 @@ size_t countChars(T)(const T value) pure @safe
 }
 
 ///
+@("countChars")
 unittest
 {
 	assert("hello".countChars == 5);
@@ -117,6 +121,7 @@ size_t countChars(T, S)(const T value, const S charToFind) pure @safe
 }
 
 ///
+@("countChars with optional charToFind")
 unittest
 {
 	assert(";; this is a test;".countChars(";") == 3);
@@ -142,6 +147,7 @@ T removeChars(T, S)(const T value, const S charToRemove) @safe
 }
 
 ///
+@("removeChars")
 unittest
 {
 	assert(removeChars("hello world", "l") == "heo word");
@@ -165,6 +171,7 @@ void removeCharsEmplace(T, S)(ref T value, const S charToRemove) @safe
 }
 
 ///
+@("removeCharsEmplace")
 unittest
 {
 	string hellol = "hello world";
@@ -215,6 +222,7 @@ string removeLeadingChars(T)(string str, const T charToRemove) pure @safe
 }
 
 ///
+@("removeLeadingChars")
 unittest
 {
 	assert("--help".removeLeadingChars('-') == "help");
@@ -245,6 +253,7 @@ void removeLeadingCharsEmplace(T)(ref string str, const T charToRemove) pure @sa
 }
 
 ///
+@("removeLeadingCharsEmplace")
 unittest
 {
 	string value = "--help";
@@ -274,6 +283,7 @@ bool isVowelChar(T)(const T vowelChar) pure @safe
 }
 
 ///
+@("isVowelChar")
 unittest
 {
 	assert('a'.isVowelChar == true);
@@ -315,6 +325,7 @@ bool isVowelChar(T)(const T value) pure @safe
 }
 
 ///
+@("isVowelChar")
 unittest
 {
 	assert("a".isVowelChar == true);
@@ -360,6 +371,7 @@ string[] toStringAll(T...)(T args) @safe
 }
 
 ///
+@("toStringAll - Multiple arguments")
 unittest
 {
 	assert(equal(toStringAll(10, 15), ["10", "15"]) == true);
@@ -389,6 +401,7 @@ string[] toStringAll(T)(T[] values) @safe
 }
 
 ///
+@("toStringAll - Array")
 unittest
 {
 	assert(equal(toStringAll([ 1, 2, 3, 4 ]), [ "1", "2", "3", "4" ]) == true);
@@ -410,6 +423,7 @@ bool hasMultipleWords(T)(const T value) pure @safe
 }
 
 ///
+@("hasMultipleWords")
 unittest
 {
 	assert(hasMultipleWords("hello world") == true);
@@ -442,6 +456,7 @@ string toYesNo(T)(const T value)
 }
 
 ///
+@("toYesNo")
 unittest
 {
 	assert(true.toYesNo == "Yes");
@@ -467,6 +482,7 @@ bool isEmpty(T)(T value)
 }
 
 ///
+@("isEmpty")
 unittest
 {
 	string zeroLength;
@@ -491,6 +507,7 @@ T sortString(T)(T value)
 }
 
 ///
+@("sortString")
 unittest
 {
 	string hello = "hello";
