@@ -518,3 +518,41 @@ unittest
 	assert(sortString(japanese) == "あいうえお");
 	assert(sortMe == "Meorst");
 }
+
+/**
+	Checks string for unicode validity.
+
+	Params:
+		value = The value to check.
+
+	Returns:
+		True if it is a valid unicode string false otherwise.
+*/
+
+bool isValidUnicode(T)(T value)
+	if(isSomeString!T)
+{
+	import std.utf : validate, UTFException;
+
+	try
+	{
+		validate(value);
+	}
+	catch(UTFException ex)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+///
+@("isValidUnicode")
+unittest
+{
+	char[] invalid = [167, 133, 175];
+	assert(!isValidUnicode(invalid));
+
+	string value = "Hello";
+	assert(value.isValidUnicode);
+}
