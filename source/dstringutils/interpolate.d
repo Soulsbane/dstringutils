@@ -75,6 +75,8 @@ string inContextFormat(string value, T)(T context) @safe
 	}
 }
 
+///
+@("Interpolate Related Functions")
 unittest
 {
 	immutable string hello = "Hello World!";
