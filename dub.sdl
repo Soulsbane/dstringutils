@@ -1,10 +1,9 @@
 name "dstringutils"
 description "Simple string functions not found in phobos.."
-copyright "Copyright © 2017"
 authors "Paul Crane"
+copyright "Copyright © 2017"
+dependency "silly" version="~>1.1.1"
 targetType "library"
 configuration "library" {
 	targetType "library"
 }
-
-dependency "silly" version="~>0.8.0"
